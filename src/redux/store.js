@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import loadingSlice from '../features/loading/loadingSlice';
-import exampleSlice from '../features/example/exampleSlice';
+import loginSlice from '../features/login/loginSlice';
 // import { connectRouter, routerMiddleware } from 'connected-react-router';
 
 // import forgotSlice from 'features/ForgotPassword/forgotSlice';
@@ -8,7 +8,7 @@ import exampleSlice from '../features/example/exampleSlice';
 
 const rootReducer = combineReducers({
     loading: loadingSlice,
-    example: exampleSlice
+    login: loginSlice
 
 });
 
