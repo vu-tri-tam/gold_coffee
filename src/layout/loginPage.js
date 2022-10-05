@@ -8,7 +8,7 @@ const LoginPage = () => {
     const user = {
         id: 1,
         name: 'vũ trí tâm',
-        role: 'admin'
+        role: 'client'
     }
 
     const onFinish = (values) => {
