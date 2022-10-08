@@ -5,14 +5,12 @@ import {
 } from '../../helper/asyncHelper';
 import axiosClient from '../../api/axiosClient';
 
-
-
-
 // fetch get user login
 const getUser = (options) => {
     let url = `api/url`;
     return axiosClient.get(url, options);
 };
+
 export const fetchUserLogin = createAsyncThunk(
     'api/fetchList',
     async (options) => {
@@ -21,23 +19,31 @@ export const fetchUserLogin = createAsyncThunk(
     }
 );
 
+// fetch get user login
+const postUser = (options) => {
+    let url = `/api/auth/login`;
+    return axiosClient.post(url, options);
+};
 
+export const fetchPostLogin = createAsyncThunk(
+    'api/fetchPostLogin',
+    async (options) => {
+        let res = await asyncGetList(postUser, options);
+        return res
 
+    }
+);
 
 const loginSlice = createSlice({
     name: 'login',
     initialState: {
-        userName: '', // 0: options 0 trong menu dropdown client, 1: ...
-        passWord: ''
     },
-    user: {},
     reducers: {
         login(state, { payload }) {
-            state.userName = payload.userName;
-            state.passWordad = payload.passWord;
+            state.user = payload;
         },
         logOut(state) {
-            state.login = {};
+            state.user = {};
         },
 
     },

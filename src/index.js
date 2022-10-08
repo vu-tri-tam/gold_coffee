@@ -7,7 +7,7 @@ import 'antd/dist/antd.min.css';// css ant
 import { Provider } from 'react-redux';
 import store from '../src/redux/store';
 import { BrowserRouter } from 'react-router-dom';
-import '../src/assets/layout/_login.scss';
+// import '../src/assets/layout/_login.scss';
 import '../src/assets/layout/_admin.scss';
 import '../src/assets/responsive/_responsive.scss';
 import 'react-notifications/lib/notifications.css'; // css notification

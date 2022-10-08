@@ -2,15 +2,12 @@ import toast from './notifications'
 import { hide, show } from '../features/loading/loadingSlice';
 
 // hide loading
-export const asyncGetList = async (fn, params = null) => {
-
+export const asyncGetList = async (func, params = null) => {
     try {
-        const res = await fn(params);
-        if (!res.data.success) {
-
+        const res = await func(params);
+        if (res.data.success) {
             return res.data;
         }
-
     } catch (e) {
         let errors = e?.response ? e.response.data : e;
         if ('errors' in errors)
@@ -24,11 +21,11 @@ export const asyncGetList = async (fn, params = null) => {
 };
 
 // show loading
-export const asyncWrapper = async (fn, params = null, notification) => {
+export const asyncWrapper = async (func, params = null, notification) => {
 
     try {
         show();
-        const res = await fn(params);
+        const res = await func(params);
         if (!res.data.success) {
             toast.error(`⚠ ${res.data.message}`, notification);
         }

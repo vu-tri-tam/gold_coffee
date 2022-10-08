@@ -1,21 +1,35 @@
 import { Button, Checkbox, Form, Input, Layout } from 'antd';
 import { Content, Footer } from 'antd/lib/layout/layout';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { fetchPostLogin, login } from '../features/login/loginSlice';
+import logo from '../assets/images/01a2512c664e0bbd79951529472361bc.jpg';
 
 const LoginPage = () => {
     const navigate = useNavigate()
-    const user = {
-        id: 1,
-        name: 'vũ trí tâm',
-        role: 'client'
-    }
+    const dispatch = useDispatch()
 
-    const onFinish = (values) => {
-        localStorage.setItem('user', 'ádasdasdasdas')
-        if (user) {
-            console.log('Success:', values);
-            user && user.role == 'admin' ? navigate('/admin') : navigate('/client')
+    const onFinish = async (values) => {
+        const { userName, passWord } = values
+        const obj = {
+            userName: userName,
+            passWord: passWord
+        }
+        try {
+            const { payload } = await dispatch(fetchPostLogin(obj))
+            if (payload?.success) {
+                let data = payload?.data;
+                localStorage.setItem('user', payload.accessToken)
+                dispatch(login(data[0]))
+                if (data[0].decentralization !== false) {
+                    navigate('/client')
+                }
+                navigate('/admin')
+
+            }
+        } catch (error) {
+            console.log(error, 'error');
         }
     };
 
@@ -24,24 +38,19 @@ const LoginPage = () => {
     };
 
     return (
-        <Layout className="layout">
-
+        <Layout className="layout sm:h-screen sm:p-10">
             <Content
-                style={{
-                    padding: '0 50px',
-                }}
             >
-
-                <div className="site-layout-content login-container">
-                    <div className='login-box-all'>
-                        <div className='login-box-left'></div>
-                        <div className='login-box'>
-                            <h3>Đăng nhập</h3>
+                <div className="site-layout-content mx-auto  sm:justify-center sm:p-0 md:p-16 sm:w-full sm:h-full">
+                    <div className='flex sm:flex-col sm:flex-none lg:flex-row md:flex-row md:justify-center md:flex-none md:h-96 sm:h-full'>
+                        <div className=' md:w-96 md:h-auto sm:h-auto sm:hidden md:block '>
+                            <img src={logo} className='w-auto sm:h-72 md:h-full object-cover' />
+                        </div>
+                        <div className='login-box sm:w-auto sm:h-auto md:w-96 bg-zinc-50 p-2 sm:m-auto md:m-0'>
+                            <h3 className='hover:bg-blue-400 sm:text-center md:text-left'>Đăng nhập</h3>
                             <Form
                                 name="basic"
-                                labelCol={{
-                                    span: 8,
-                                }}
+
                                 wrapperCol={{
                                     span: 16,
                                 }}
@@ -54,7 +63,7 @@ const LoginPage = () => {
                             >
                                 <Form.Item
                                     label="Username"
-                                    name="username"
+                                    name="userName"
                                     rules={[
                                         {
                                             required: true,
@@ -67,7 +76,7 @@ const LoginPage = () => {
 
                                 <Form.Item
                                     label="Password"
-                                    name="password"
+                                    name="passWord"
                                     rules={[
                                         {
                                             required: true,
@@ -82,7 +91,7 @@ const LoginPage = () => {
                                     name="remember"
                                     valuePropName="checked"
                                     wrapperCol={{
-                                        offset: 8,
+
                                         span: 16,
                                     }}
                                 >
@@ -91,11 +100,11 @@ const LoginPage = () => {
 
                                 <Form.Item
                                     wrapperCol={{
-                                        offset: 8,
-                                        span: 16,
+
+
                                     }}
                                 >
-                                    <Button type="primary" htmlType="submit">
+                                    <Button type='primary' htmlType="submit" className='w-full '>
                                         Submit
                                     </Button>
                                 </Form.Item>
@@ -105,13 +114,7 @@ const LoginPage = () => {
 
                 </div>
             </Content>
-            <Footer
-                style={{
-                    textAlign: 'center',
-                }}
-            >
-                Ant Design ©2018 Created by Ant UED
-            </Footer>
+
         </Layout>
     );
 };

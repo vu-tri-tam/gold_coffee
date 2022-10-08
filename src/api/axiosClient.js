@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Set up default config for http requests here
 const axiosClient = axios.create({
-    baseURL: process.env.REACT_APP_API_URL,
+    baseURL: 'http://localhost:5000',
     headers: {
         "content-type": "application/json",
     },
@@ -10,7 +10,7 @@ const axiosClient = axios.create({
 
 // Handle all request
 axiosClient.interceptors.request.use(config => {
-    config.headers.Authorization = localStorage.getItem('userLogin');
+    config.headers.Authorization = localStorage.getItem('user');
     return config;
 }, error => {
     return Promise.reject(error);
@@ -37,7 +37,7 @@ axiosClient.interceptors.response.use(response => {
     return response;
 }, error => {
     const originalRequest = error.config;
-    if (localStorage.getItem("userLogin")) {
+    if (localStorage.getItem("user")) {
         if (error.response.status === 401 && !originalRequest._retry) {
 
             if (isRefreshing) {
@@ -57,7 +57,7 @@ axiosClient.interceptors.response.use(response => {
             return new Promise(function (resolve, reject) {
                 axiosClient.get('refresh-token').then(res => {
                     if (res.data.success) {
-                        localStorage.setItem('userLogin', res.data.data.token);
+                        localStorage.setItem('user', res.data.data.token);
                         originalRequest.headers['Authorization'] = res.data.data.token;
                         processQueue(null, res.data.data.token);
                         resolve(axiosClient(originalRequest));
@@ -70,8 +70,8 @@ axiosClient.interceptors.response.use(response => {
         }
         return Promise.reject(error);
     }
-    else {
-        window.location.href = '/login';
-    }
+    // else {
+    //     window.location.href = '/login-page';
+    // }
 })
 export default axiosClient

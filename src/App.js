@@ -19,9 +19,9 @@ const App = () => {
       <Route
         exact
         path='/client'
-        element={<PrivateRouter>
+        element={
           <Client_Page />
-        </PrivateRouter>} />
+        } />
       <Route
         exact
         path='/login-page'
