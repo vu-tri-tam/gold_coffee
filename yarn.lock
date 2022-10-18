@@ -3004,7 +3004,7 @@
     "normalize-path" "^3.0.0"
     "picomatch" "^2.0.4"
 
-"apexcharts@^3.35.5":
+"apexcharts@^3.18.0":
   "integrity" "sha512-Bi3aq35xWntI71JlywXTBBAOhuKTbB4wijKw4ClkIAFV904YDkHPIJ8N9LcZq9fvVb0VX1AEmyOFBOB2Vwsuew=="
   "resolved" "https://registry.npmjs.org/apexcharts/-/apexcharts-3.35.5.tgz"
   "version" "3.35.5"
@@ -8680,7 +8680,7 @@
     "kleur" "^3.0.3"
     "sisteransi" "^1.0.5"
 
-"prop-types@^15.5.10", "prop-types@^15.6.2", "prop-types@^15.8.1":
+"prop-types@^15.5.10", "prop-types@^15.5.7", "prop-types@^15.6.2", "prop-types@^15.8.1":
   "integrity" "sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg=="
   "resolved" "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   "version" "15.8.1"
@@ -9141,6 +9141,13 @@
     "rc-resize-observer" "^1.0.0"
     "rc-util" "^5.15.0"
 
+"react-apexcharts@^1.4.0":
+  "integrity" "sha512-DrcMV4aAMrUG+n6412yzyATWEyCDWlpPBBhVbpzBC4PDeuYU6iF84SmExbck+jx5MUm4U5PM3/T307Mc3kzc9Q=="
+  "resolved" "https://registry.npmjs.org/react-apexcharts/-/react-apexcharts-1.4.0.tgz"
+  "version" "1.4.0"
+  dependencies:
+    "prop-types" "^15.5.7"
+
 "react-app-polyfill@^3.0.0":
   "integrity" "sha512-sZ41cxiU5llIB003yxxQBYrARBqe0repqPTTYBTmMqTz9szeBbE37BehCE891NZsmdZqqP+xWKdT3eo3vOzN8w=="
   "resolved" "https://registry.npmjs.org/react-app-polyfill/-/react-app-polyfill-3.0.0.tgz"
@@ -9350,7 +9357,7 @@
     "loose-envify" "^1.4.0"
     "prop-types" "^15.6.2"
 
-"react@*", "react@^16.3.0 || 17", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.9.0 || ^17.0.0 || ^18", "react@^18.0.0", "react@^18.2.0", "react@>= 16", "react@>=16.0.0", "react@>=16.11.0", "react@>=16.6.0", "react@>=16.8", "react@>=16.8.0", "react@>=16.9.0":
+"react@*", "react@^16.3.0 || 17", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.9.0 || ^17.0.0 || ^18", "react@^18.0.0", "react@^18.2.0", "react@>= 16", "react@>=0.13", "react@>=16.0.0", "react@>=16.11.0", "react@>=16.6.0", "react@>=16.8", "react@>=16.8.0", "react@>=16.9.0":
   "integrity" "sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   "version" "18.2.0"

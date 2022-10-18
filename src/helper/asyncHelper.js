@@ -5,9 +5,10 @@ import { hide, show } from '../features/loading/loadingSlice';
 export const asyncGetList = async (func, params = null) => {
     try {
         const res = await func(params);
-        if (res.data.success) {
-            return res.data;
+        if (!res.data.success) {
+            toast.error(`⚠ ${res.data.message}`);
         }
+        return res.data;
     } catch (e) {
         let errors = e?.response ? e.response.data : e;
         if ('errors' in errors)

@@ -6,15 +6,15 @@ import {
 import axiosClient from '../../api/axiosClient';
 
 // fetch get user login
-const getUser = (options) => {
-    let url = `api/url`;
-    return axiosClient.get(url, options);
+const getUser = () => {
+    let url = `/api/auth`;
+    return axiosClient.get(url);
 };
 
 export const fetchUserLogin = createAsyncThunk(
     'api/fetchList',
-    async (options) => {
-        let res = await asyncGetList(getUser, options);
+    async () => {
+        let res = await asyncGetList(getUser);
         return res;
     }
 );
@@ -49,7 +49,8 @@ const loginSlice = createSlice({
     },
     extraReducers: {
         [fetchUserLogin.fulfilled]: (state, { payload }) => {
-            state.user = payload?.data;
+            console.log(state, payload);
+            // state.user = payload?.data;
         },
     },
 });

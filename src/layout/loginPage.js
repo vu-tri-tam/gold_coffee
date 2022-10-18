@@ -5,11 +5,11 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { fetchPostLogin, login } from '../features/login/loginSlice';
 import logo from '../assets/images/01a2512c664e0bbd79951529472361bc.jpg';
+import CreateNotification from '../helper/notifications';
 
 const LoginPage = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
     const onFinish = async (values) => {
         const { userName, passWord } = values
         const obj = {
@@ -19,6 +19,7 @@ const LoginPage = () => {
         try {
             const { payload } = await dispatch(fetchPostLogin(obj))
             if (payload?.success) {
+                CreateNotification.success('Thông báo', payload.message)
                 let data = payload?.data;
                 localStorage.setItem('user', payload.accessToken)
                 dispatch(login(data[0]))
